@@ -1626,10 +1626,10 @@ _0x2060009:
 	.CSEG
 _keypad_init:
 ; .FSTART _keypad_init
-; 0001 0006     KEYPAD_DDR = 0x0F;  // 4 ??? ??? ????? (?????)? 4 ??? ??? ????? (???????)
+; 0001 0006     KEYPAD_DDR = 0x0F;  // 4 پین اول خروجی (سطرها)، 4 پین دوم ورودی (ستون‌ها)
 	LDI  R30,LOW(15)
 	OUT  0x1A,R30
-; 0001 0007     KEYPAD_PORT = 0xFF; // ?????? ???? ???????? ? ?? ???? ????????
+; 0001 0007     KEYPAD_PORT = 0xFF; // پول‌آپ کردن ورودی‌ها و یک کردن خروجی‌ها
 	LDI  R30,LOW(255)
 	OUT  0x1B,R30
 ; 0001 0008 }
@@ -1665,14 +1665,14 @@ _keypad_read:
 _0x20005:
 	CPI  R17,4
 	BRSH _0x20006
-; 0001 0014         KEYPAD_PORT = ~(1 << r) | 0xF0; // ??? ???? ?? ???
+; 0001 0014         KEYPAD_PORT = ~(1 << r) | 0xF0; // صفر کردن یک سطر
 	MOV  R30,R17
 	LDI  R26,LOW(1)
 	CALL __LSLB12
 	COM  R30
 	ORI  R30,LOW(0xF0)
 	OUT  0x1B,R30
-; 0001 0015         wait_ms(2); // ???? ???? ????? ?????
+; 0001 0015         wait_ms(2); // زمان برای تثبیت ولتاژ
 	LDI  R26,LOW(2)
 	LDI  R27,0
 	RCALL _wait_ms
@@ -1682,7 +1682,7 @@ _0x20005:
 _0x20008:
 	CPI  R16,4
 	BRSH _0x20009
-; 0001 0018             if(!(KEYPAD_PIN & (1 << (c + 4)))) { // ??? ????? ??? ??? ???
+; 0001 0018             if(!(KEYPAD_PIN & (1 << (c + 4)))) { // اگر ستونی صفر شده بود
 	IN   R1,25
 	MOV  R30,R16
 	LDI  R31,0
@@ -1719,7 +1719,7 @@ _0x20009:
 	SUBI R17,-1
 	RJMP _0x20005
 _0x20006:
-; 0001 001D     return 0; // ??? ????? ????? ????
+; 0001 001D     return 0; // هیچ کلیدی فشرده نشده
 	LDI  R30,LOW(0)
 _0x2060008:
 	LDD  R17,Y+1
@@ -1728,24 +1728,6 @@ _0x2060008:
 	RET
 ; 0001 001E }
 ; .FEND
-;
-;char keypad_wait_key(void) {
-; 0001 0020 char keypad_wait_key(void) {
-; 0001 0021     char key, last_key = 0;
-; 0001 0022     while(1) {
-;	key -> R17
-;	last_key -> R16
-; 0001 0023         key = keypad_read();
-; 0001 0024         if(key != 0 && last_key == 0) { // ????? ??? ??????????? (????? ?????)
-; 0001 0025             wait_ms(20); // Debounce
-; 0001 0026             last_key = key;
-; 0001 0027             return key;
-; 0001 0028         }
-; 0001 0029         if(key == 0) {
-; 0001 002A             last_key = 0;
-; 0001 002B         }
-; 0001 002C     }
-; 0001 002D }
 ;#include <mega32.h>
 	#ifndef __SLEEP_DEFINED__
 	#define __SLEEP_DEFINED__

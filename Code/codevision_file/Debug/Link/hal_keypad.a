@@ -32,10 +32,10 @@
 	.CSEG
 ;PCODE: $0000000D VOL: 0
 ;PCODE: $0000000E VOL: 0
-; 0001 0006     KEYPAD_DDR = 0x0F;  // 4 ??? ??? ????? (?????)? 4 ??? ??? ????? (???????)
+; 0001 0006     KEYPAD_DDR = 0x0F;  // 4 پین اول خروجی (سطرها)، 4 پین دوم ورودی (ستون‌ها)
 ;PCODE: $0000000F VOL: 0
 ;PCODE: $00000010 VOL: 0
-; 0001 0007     KEYPAD_PORT = 0xFF; // ?????? ???? ???????? ? ?? ???? ????????
+; 0001 0007     KEYPAD_PORT = 0xFF; // پول‌آپ کردن ورودی‌ها و یک کردن خروجی‌ها
 ;PCODE: $00000011 VOL: 0
 ;PCODE: $00000012 VOL: 0
 ; 0001 0008 }
@@ -74,14 +74,14 @@
 ;PCODE: $00000024 VOL: 0
 ;PCODE: $00000025 VOL: 0
 ;PCODE: $00000026 VOL: 0
-; 0001 0014         KEYPAD_PORT = ~(1 << r) | 0xF0; // ??? ???? ?? ???
+; 0001 0014         KEYPAD_PORT = ~(1 << r) | 0xF0; // صفر کردن یک سطر
 ;PCODE: $00000027 VOL: 0
 ;PCODE: $00000028 VOL: 0
 ;PCODE: $00000029 VOL: 0
 ;PCODE: $0000002A VOL: 0
 ;PCODE: $0000002B VOL: 0
 ;PCODE: $0000002C VOL: 0
-; 0001 0015         wait_ms(2); // ???? ???? ????? ?????
+; 0001 0015         wait_ms(2); // زمان برای تثبیت ولتاژ
 ;PCODE: $0000002D VOL: 0
 ;PCODE: $0000002E VOL: 0
 ;PCODE: $0000002F VOL: 0
@@ -96,7 +96,7 @@
 ;PCODE: $00000036 VOL: 0
 ;PCODE: $00000037 VOL: 0
 ;PCODE: $00000038 VOL: 0
-; 0001 0018             if(!(KEYPAD_PIN & (1 << (c + 4)))) { // ??? ????? ??? ??? ???
+; 0001 0018             if(!(KEYPAD_PIN & (1 << (c + 4)))) { // اگر ستونی صفر شده بود
 ;PCODE: $00000039 VOL: 0
 ;PCODE: $0000003A VOL: 0
 ;PCODE: $0000003B VOL: 0
@@ -137,7 +137,7 @@
 ;PCODE: $0000005A VOL: 0
 ;PCODE: $0000005B VOL: 0
 ;PCODE: $0000005C VOL: 0
-; 0001 001D     return 0; // ??? ????? ????? ????
+; 0001 001D     return 0; // هیچ کلیدی فشرده نشده
 ;PCODE: $0000005D VOL: 0
 ;PCODE: $0000005E VOL: 0
 ;PCODE: $0000005F VOL: 0
@@ -147,57 +147,3 @@
 ;PCODE: $00000063 VOL: 0
 ; 0001 001E }
 ;PCODE: $00000064 VOL: 0
-;
-;char keypad_wait_key(void) {
-; 0001 0020 char keypad_wait_key(void) {
-;PCODE: $00000065 VOL: 0
-;PCODE: $00000066 VOL: 0
-; 0001 0021     char key, last_key = 0;
-; 0001 0022     while(1) {
-;PCODE: $00000067 VOL: 0
-;PCODE: $00000068 VOL: 0
-;	key -> R17
-;	last_key -> R16
-;PCODE: $00000069 VOL: 0
-;PCODE: $0000006A VOL: 0
-;PCODE: $0000006B VOL: 0
-; 0001 0023         key = keypad_read();
-;PCODE: $0000006C VOL: 0
-;PCODE: $0000006D VOL: 0
-; 0001 0024         if(key != 0 && last_key == 0) { // ????? ??? ??????????? (????? ?????)
-;PCODE: $0000006E VOL: 0
-;PCODE: $0000006F VOL: 0
-;PCODE: $00000070 VOL: 0
-;PCODE: $00000071 VOL: 0
-;PCODE: $00000072 VOL: 0
-;PCODE: $00000073 VOL: 0
-;PCODE: $00000074 VOL: 0
-;PCODE: $00000075 VOL: 0
-; 0001 0025             wait_ms(20); // Debounce
-;PCODE: $00000076 VOL: 0
-;PCODE: $00000077 VOL: 0
-;PCODE: $00000078 VOL: 0
-; 0001 0026             last_key = key;
-;PCODE: $00000079 VOL: 0
-;PCODE: $0000007A VOL: 0
-; 0001 0027             return key;
-;PCODE: $0000007B VOL: 0
-;PCODE: $0000007C VOL: 0
-;PCODE: $0000007D VOL: 0
-; 0001 0028         }
-; 0001 0029         if(key == 0) {
-;PCODE: $0000007E VOL: 0
-;PCODE: $0000007F VOL: 0
-;PCODE: $00000080 VOL: 0
-; 0001 002A             last_key = 0;
-;PCODE: $00000081 VOL: 0
-;PCODE: $00000082 VOL: 0
-; 0001 002B         }
-; 0001 002C     }
-;PCODE: $00000083 VOL: 0
-;PCODE: $00000084 VOL: 0
-;PCODE: $00000085 VOL: 0
-; 0001 002D }
-;PCODE: $00000086 VOL: 0
-;PCODE: $00000087 VOL: 0
-;PCODE: $00000088 VOL: 0

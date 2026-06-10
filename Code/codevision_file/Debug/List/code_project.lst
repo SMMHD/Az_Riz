@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Code\codevision_file\Debug\List\code_project.asm Wed Jun 10 15:52:51 2026
+AVRASM ver. 2.1.30  F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Code\codevision_file\Debug\List\code_project.asm Wed Jun 10 16:02:34 2026
 
                  
                  
@@ -1777,10 +1777,10 @@ F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\C
                  	.CSEG
                  _keypad_init:
                  ; .FSTART _keypad_init
-                 ; 0001 0006     KEYPAD_DDR = 0x0F;  // 4 ??? ??? ????? (?????)? 4 ??? ??? ????? (???????)
+                 ; 0001 0006     KEYPAD_DDR = 0x0F;  // 4 پین اول خروجی (سطرها)، 4 پین دوم ورودی (ستون‌ها)
 0001f8 e0ef      	LDI  R30,LOW(15)
 0001f9 bbea      	OUT  0x1A,R30
-                 ; 0001 0007     KEYPAD_PORT = 0xFF; // ?????? ???? ???????? ? ?? ???? ????????
+                 ; 0001 0007     KEYPAD_PORT = 0xFF; // پول‌آپ کردن ورودی‌ها و یک کردن خروجی‌ها
 0001fa efef      	LDI  R30,LOW(255)
 0001fb bbeb      	OUT  0x1B,R30
                  ; 0001 0008 }
@@ -1816,14 +1816,14 @@ F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\C
                  _0x20005:
 000208 3014      	CPI  R17,4
 000209 f560      	BRSH _0x20006
-                 ; 0001 0014         KEYPAD_PORT = ~(1 << r) | 0xF0; // ??? ???? ?? ???
+                 ; 0001 0014         KEYPAD_PORT = ~(1 << r) | 0xF0; // صفر کردن یک سطر
 00020a 2fe1      	MOV  R30,R17
 00020b e0a1      	LDI  R26,LOW(1)
 00020c 940e 0754 	CALL __LSLB12
 00020e 95e0      	COM  R30
 00020f 6fe0      	ORI  R30,LOW(0xF0)
 000210 bbeb      	OUT  0x1B,R30
-                 ; 0001 0015         wait_ms(2); // ???? ???? ????? ?????
+                 ; 0001 0015         wait_ms(2); // زمان برای تثبیت ولتاژ
 000211 e0a2      	LDI  R26,LOW(2)
 000212 e0b0      	LDI  R27,0
 000213 d05e      	RCALL _wait_ms
@@ -1833,7 +1833,7 @@ F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\C
                  _0x20008:
 000215 3004      	CPI  R16,4
 000216 f4e8      	BRSH _0x20009
-                 ; 0001 0018             if(!(KEYPAD_PIN & (1 << (c + 4)))) { // ??? ????? ??? ??? ???
+                 ; 0001 0018             if(!(KEYPAD_PIN & (1 << (c + 4)))) { // اگر ستونی صفر شده بود
 000217 b219      	IN   R1,25
 000218 2fe0      	MOV  R30,R16
 000219 e0f0      	LDI  R31,0
@@ -1870,7 +1870,7 @@ F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\C
 000234 5f1f      	SUBI R17,-1
 000235 cfd2      	RJMP _0x20005
                  _0x20006:
-                 ; 0001 001D     return 0; // ??? ????? ????? ????
+                 ; 0001 001D     return 0; // هیچ کلیدی فشرده نشده
 000236 e0e0      	LDI  R30,LOW(0)
                  _0x2060008:
 000237 8119      	LDD  R17,Y+1
@@ -1879,24 +1879,6 @@ F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\C
 00023a 9508      	RET
                  ; 0001 001E }
                  ; .FEND
-                 ;
-                 ;char keypad_wait_key(void) {
-                 ; 0001 0020 char keypad_wait_key(void) {
-                 ; 0001 0021     char key, last_key = 0;
-                 ; 0001 0022     while(1) {
-                 ;	key -> R17
-                 ;	last_key -> R16
-                 ; 0001 0023         key = keypad_read();
-                 ; 0001 0024         if(key != 0 && last_key == 0) { // ????? ??? ??????????? (????? ?????)
-                 ; 0001 0025             wait_ms(20); // Debounce
-                 ; 0001 0026             last_key = key;
-                 ; 0001 0027             return key;
-                 ; 0001 0028         }
-                 ; 0001 0029         if(key == 0) {
-                 ; 0001 002A             last_key = 0;
-                 ; 0001 002B         }
-                 ; 0001 002C     }
-                 ; 0001 002D }
                  ;#include <mega32.h>
                  	#ifndef __SLEEP_DEFINED__
                  	#endif
