@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>6.1</ProjectVersion>
+    <ToolchainName>com.HPInfoTech.CodeVisionAVR.C</ToolchainName>
+    <ProjectGuid>{863D43DA-423D-497C-A76A-A46C3F34E8A0}</ProjectGuid>
+    <avrdevice>ATmega32</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.cof</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>code_project</AssemblyName>
+    <Name>code_project</Name>
+    <RootNamespace>code_project</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <OverrideVtorValue />
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <CV>
+        <CVProjectPath>"code_project.prj"</CVProjectPath>
+      </CV>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <CV>
+        <CVProjectPath>"code_project.prj"</CVProjectPath>
+      </CV>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="..\" />
+    <Compile Include="..\app_lock.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="..\hal_keypad.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="..\hal_timer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="..\main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="..\hal_lcd.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\vs\\CV.targets" />
+</Project>

@@ -1,0 +1,8 @@
+VERSION:3 SOURCE_TIMESTAMP:5CCA7D76
+NODE:I LEVEL:0 LINE:1 "H:\CodeVison\inc\mega32.h"
+NODE:I LEVEL:0 LINE:2 "F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Code\hal_timer.h"
+NODE:V LEVEL:0 LINE:4 "g_millis -> RAM:????"
+NODE:F LEVEL:0 LINE:7 "timer0_comp_isr(void)"
+NODE:F LEVEL:0 LINE:11 "timer_init(void)"
+NODE:F LEVEL:0 LINE:19 "millis(void)"
+NODE:F LEVEL:0 LINE:28 "wait_ms(unsigned int ms)"

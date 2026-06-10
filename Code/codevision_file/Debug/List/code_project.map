@@ -1,0 +1,59 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+user_pass                                                                         0x03DF      10
+admin_pass                                                                        0x03E9      10
+max_tries                                                                         0x03F3       1
+pass_len                                                                          0x03F4       1
+failed_attempts                                                                   0x03F5       1
+door_open_time                                                                    0x03F6       4
+is_door_open                                                                      0x03FA       1
+g_millis                                                                          0x03FB       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+lock_init                                                                         0x00179     11
+lock_open_door                                                                    0x00184     15
+lock_update_task                                                                  0x00193     31
+lock_set_password                                                                 0x001CA     17
+lock_get_max_tries                                                                0x001DB      3
+lock_set_max_tries                                                                0x001DE      6
+lock_get_pass_len                                                                 0x001E4      3
+lock_set_pass_len                                                                 0x001E7      6
+lock_get_failed_attempts                                                          0x001ED      3
+lock_register_failure                                                             0x001F0      4
+lock_reset_failures                                                               0x001F4      4
+keypad_init                                                                       0x001F8      5
+keypad_read                                                                       0x001FD     62
+timer0_comp_isr                                                                   0x0023B     27
+timer_init                                                                        0x00256     11
+millis                                                                            0x00261     17
+wait_ms                                                                           0x00272     22
+ui_get_key                                                                        0x00288     27
+get_input                                                                         0x002A3     90
+system_lockdown                                                                   0x002FD     68
+admin_menu                                                                        0x00341    122
+main                                                                              0x003BB    120
+lcd_pulse                                                                         0x00433      8
+lcd_send                                                                          0x0043B     75
+lcd_init                                                                          0x00486     23
+lcd_clear                                                                         0x0049D      8
+lcd_putc                                                                          0x004A5      7
+lcd_print                                                                         0x004AC     15
+lcd_gotoxy                                                                        0x004BB     21
+strcmp                                                                            0x004D0     20
+strcpy                                                                            0x004E4     13
+strlen                                                                            0x004F1     12
+strlenf                                                                           0x004FD     13
+put_buff_G101                                                                     0x0050A     64
+_print_G101                                                                       0x0054A    308
+sprintf                                                                           0x0067E     52
