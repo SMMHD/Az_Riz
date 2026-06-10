@@ -55,7 +55,14 @@ int get_input(char* buffer, int max_len, int is_password) {
             lcd_print("                ");
             lcd_gotoxy(0, 1);
         } 
-        else if(key == 'C') { // ?????? / ??????
+        else if(key == 'C') { // پاک کردن کل ورودی (روی کیپد دکمه ON/C)
+            idx = 0;
+            buffer[0] = '\0';
+            lcd_gotoxy(0, 1);
+            lcd_print("                ");
+            lcd_gotoxy(0, 1);
+        } 
+        else if(key == '-') { // انصراف / بازگشت
             return 0;
         } 
         else if(key >= '0' && key <= '9') {
@@ -94,7 +101,7 @@ void system_lockdown(void) {
     lock_reset_failures();
 }
 
-// ???? ??????
+// منوی مدیریت
 void admin_menu(void) {
     char key;
     char buf[10];
@@ -123,7 +130,7 @@ void admin_menu(void) {
         } 
         else if(key == '3') {
             lcd_clear(); lcd_print("Set Max Tries:");
-            if(get_input(buf, 1, 0)) { // ??? 1 ??? ???? ???
+            if(get_input(buf, 1, 0)) { 
                 lock_set_max_tries(buf[0] - '0');
                 lcd_clear(); lcd_print("Saved!"); wait_ms(1000);
             }
@@ -142,8 +149,8 @@ void admin_menu(void) {
                 }
             }
         } 
-        else if(key == 'C' || key == 'D') {
-            break; // ???? ?? ???? ??????
+        else if(key == '-' || key == '+') { // دکمه‌های خروج
+            break; 
         }
     }
 }
@@ -152,7 +159,6 @@ void main(void) {
     char key;
     char input_buffer[10];
     
-    // ???????? ????? ?????
     timer_init();
     lcd_init();
     keypad_init();
@@ -168,13 +174,13 @@ void main(void) {
         lock_update_task();
         
         lcd_clear();
-        lcd_print("A: User  B:Admin");
+        lcd_print("/: User  *:Admin"); // تغییر راهنما روی LCD
         lcd_gotoxy(0, 1);
         lcd_print("Select Mode...");
         
         key = ui_get_key();
         
-        if (key == 'A') { // ???? ?????
+        if (key == '/') { // تغییر دکمه حالت کاربر به /
             lcd_clear();
             lcd_print("User Password:");
             if (get_input(input_buffer, lock_get_pass_len(), 1)) {
@@ -194,7 +200,7 @@ void main(void) {
                 }
             }
         } 
-        else if (key == 'B') { // ???? ????
+        else if (key == '*') { // تغییر دکمه حالت مدیر به *
             lcd_clear();
             lcd_print("Admin Password:");
             if (get_input(input_buffer, lock_get_pass_len(), 1)) {
@@ -202,7 +208,7 @@ void main(void) {
                     lock_reset_failures();
                     lcd_clear(); lcd_print("Admin Verified!");
                     wait_ms(1000);
-                    admin_menu(); // ???? ?? ???? ???????
+                    admin_menu(); 
                 } else {
                     lock_register_failure();
                     lcd_clear(); lcd_print("Wrong Password!");

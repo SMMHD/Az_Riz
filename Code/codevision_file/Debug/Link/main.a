@@ -193,163 +193,164 @@
 ;PCODE: $00000073 VOL: 0
 ;PCODE: $00000074 VOL: 0
 ; 0003 0039         }
-; 0003 003A         else if(key == 'C') { // ?????? / ??????
+; 0003 003A         else if(key == 'C') { // پاک کردن کل ورودی (روی کیپد دکمه ON/C)
 ;PCODE: $00000075 VOL: 0
 ;PCODE: $00000076 VOL: 0
 ;PCODE: $00000077 VOL: 0
 ;PCODE: $00000078 VOL: 0
 ;PCODE: $00000079 VOL: 0
-; 0003 003B             return 0;
+; 0003 003B             idx = 0;
 ;PCODE: $0000007A VOL: 0
 ;PCODE: $0000007B VOL: 0
+; 0003 003C             buffer[0] = '\0';
 ;PCODE: $0000007C VOL: 0
 ;PCODE: $0000007D VOL: 0
-; 0003 003C         }
-; 0003 003D         else if(key >= '0' && key <= '9') {
 ;PCODE: $0000007E VOL: 0
+; 0003 003D             lcd_gotoxy(0, 1);
 ;PCODE: $0000007F VOL: 0
 ;PCODE: $00000080 VOL: 0
 ;PCODE: $00000081 VOL: 0
 ;PCODE: $00000082 VOL: 0
+; 0003 003E             lcd_print("                ");
 ;PCODE: $00000083 VOL: 0
 ;PCODE: $00000084 VOL: 0
 ;PCODE: $00000085 VOL: 0
+; 0003 003F             lcd_gotoxy(0, 1);
 ;PCODE: $00000086 VOL: 0
 ;PCODE: $00000087 VOL: 0
 ;PCODE: $00000088 VOL: 0
-; 0003 003E             if(idx < max_len) {
 ;PCODE: $00000089 VOL: 0
+; 0003 0040         }
+; 0003 0041         else if(key == '-') { // انصراف / بازگشت
 ;PCODE: $0000008A VOL: 0
 ;PCODE: $0000008B VOL: 0
-; 0003 003F                 buffer[idx] = key;
 ;PCODE: $0000008C VOL: 0
 ;PCODE: $0000008D VOL: 0
 ;PCODE: $0000008E VOL: 0
+; 0003 0042             return 0;
 ;PCODE: $0000008F VOL: 0
-; 0003 0040                 idx++;
 ;PCODE: $00000090 VOL: 0
 ;PCODE: $00000091 VOL: 0
-; 0003 0041                 buffer[idx] = '\0';
 ;PCODE: $00000092 VOL: 0
+; 0003 0043         }
+; 0003 0044         else if(key >= '0' && key <= '9') {
 ;PCODE: $00000093 VOL: 0
 ;PCODE: $00000094 VOL: 0
 ;PCODE: $00000095 VOL: 0
 ;PCODE: $00000096 VOL: 0
-; 0003 0042 
-; 0003 0043                 lcd_gotoxy(idx - 1, 1);
 ;PCODE: $00000097 VOL: 0
 ;PCODE: $00000098 VOL: 0
 ;PCODE: $00000099 VOL: 0
 ;PCODE: $0000009A VOL: 0
 ;PCODE: $0000009B VOL: 0
-; 0003 0044                 if(is_password) lcd_putc('*');
 ;PCODE: $0000009C VOL: 0
 ;PCODE: $0000009D VOL: 0
+; 0003 0045             if(idx < max_len) {
 ;PCODE: $0000009E VOL: 0
 ;PCODE: $0000009F VOL: 0
 ;PCODE: $000000A0 VOL: 0
-; 0003 0045                 else lcd_putc(key);
+; 0003 0046                 buffer[idx] = key;
 ;PCODE: $000000A1 VOL: 0
 ;PCODE: $000000A2 VOL: 0
 ;PCODE: $000000A3 VOL: 0
 ;PCODE: $000000A4 VOL: 0
-; 0003 0046             }
+; 0003 0047                 idx++;
 ;PCODE: $000000A5 VOL: 0
-; 0003 0047         }
 ;PCODE: $000000A6 VOL: 0
-; 0003 0048     }
+; 0003 0048                 buffer[idx] = '\0';
 ;PCODE: $000000A7 VOL: 0
 ;PCODE: $000000A8 VOL: 0
 ;PCODE: $000000A9 VOL: 0
 ;PCODE: $000000AA VOL: 0
 ;PCODE: $000000AB VOL: 0
+; 0003 0049 
+; 0003 004A                 lcd_gotoxy(idx - 1, 1);
 ;PCODE: $000000AC VOL: 0
-; 0003 0049 }
 ;PCODE: $000000AD VOL: 0
 ;PCODE: $000000AE VOL: 0
 ;PCODE: $000000AF VOL: 0
 ;PCODE: $000000B0 VOL: 0
-
-	.DSEG
-_0x6000B:
-	.BYTE 0x2F
-;
-;// ??? ??? ????? ?? ?? ???????? ?????
-;void system_lockdown(void) {
-; 0003 004C void system_lockdown(void) {
-
-	.CSEG
+; 0003 004B                 if(is_password) lcd_putc('*');
 ;PCODE: $000000B1 VOL: 0
 ;PCODE: $000000B2 VOL: 0
-; 0003 004D     int wait_time = 15; // 15 ????? ??? ??????
-; 0003 004E     unsigned long last_sec = millis();
-; 0003 004F     char buf[16];
-; 0003 0050 
-; 0003 0051     lcd_clear();
 ;PCODE: $000000B3 VOL: 0
 ;PCODE: $000000B4 VOL: 0
 ;PCODE: $000000B5 VOL: 0
-;	wait_time -> R16,R17
-;	last_sec -> Y+18
-;	buf -> Y+2
+; 0003 004C                 else lcd_putc(key);
 ;PCODE: $000000B6 VOL: 0
 ;PCODE: $000000B7 VOL: 0
 ;PCODE: $000000B8 VOL: 0
 ;PCODE: $000000B9 VOL: 0
+; 0003 004D             }
 ;PCODE: $000000BA VOL: 0
-; 0003 0052     lcd_print("SYSTEM LOCKED!");
+; 0003 004E         }
 ;PCODE: $000000BB VOL: 0
+; 0003 004F     }
 ;PCODE: $000000BC VOL: 0
 ;PCODE: $000000BD VOL: 0
-; 0003 0053 
-; 0003 0054     while(wait_time > 0) {
 ;PCODE: $000000BE VOL: 0
 ;PCODE: $000000BF VOL: 0
 ;PCODE: $000000C0 VOL: 0
-; 0003 0055         lock_update_task();
 ;PCODE: $000000C1 VOL: 0
-; 0003 0056         if(millis() - last_sec >= 1000) {
 ;PCODE: $000000C2 VOL: 0
+; 0003 0050 }
 ;PCODE: $000000C3 VOL: 0
 ;PCODE: $000000C4 VOL: 0
 ;PCODE: $000000C5 VOL: 0
 ;PCODE: $000000C6 VOL: 0
+
+	.DSEG
+_0x6000B:
+	.BYTE 0x40
+;
+;// ??? ??? ????? ?? ?? ???????? ?????
+;void system_lockdown(void) {
+; 0003 0053 void system_lockdown(void) {
+
+	.CSEG
 ;PCODE: $000000C7 VOL: 0
-; 0003 0057             last_sec = millis();
 ;PCODE: $000000C8 VOL: 0
+; 0003 0054     int wait_time = 15; // 15 ????? ??? ??????
+; 0003 0055     unsigned long last_sec = millis();
+; 0003 0056     char buf[16];
+; 0003 0057 
+; 0003 0058     lcd_clear();
 ;PCODE: $000000C9 VOL: 0
-; 0003 0058             wait_time--;
 ;PCODE: $000000CA VOL: 0
 ;PCODE: $000000CB VOL: 0
-; 0003 0059             sprintf(buf, "Wait %2d sec   ", wait_time);
+;	wait_time -> R16,R17
+;	last_sec -> Y+18
+;	buf -> Y+2
 ;PCODE: $000000CC VOL: 0
 ;PCODE: $000000CD VOL: 0
 ;PCODE: $000000CE VOL: 0
 ;PCODE: $000000CF VOL: 0
 ;PCODE: $000000D0 VOL: 0
+; 0003 0059     lcd_print("SYSTEM LOCKED!");
 ;PCODE: $000000D1 VOL: 0
 ;PCODE: $000000D2 VOL: 0
 ;PCODE: $000000D3 VOL: 0
+; 0003 005A 
+; 0003 005B     while(wait_time > 0) {
 ;PCODE: $000000D4 VOL: 0
 ;PCODE: $000000D5 VOL: 0
 ;PCODE: $000000D6 VOL: 0
+; 0003 005C         lock_update_task();
 ;PCODE: $000000D7 VOL: 0
-; 0003 005A             lcd_gotoxy(0, 1);
+; 0003 005D         if(millis() - last_sec >= 1000) {
 ;PCODE: $000000D8 VOL: 0
 ;PCODE: $000000D9 VOL: 0
 ;PCODE: $000000DA VOL: 0
 ;PCODE: $000000DB VOL: 0
-; 0003 005B             lcd_print(buf);
 ;PCODE: $000000DC VOL: 0
 ;PCODE: $000000DD VOL: 0
-; 0003 005C         }
-; 0003 005D     }
+; 0003 005E             last_sec = millis();
 ;PCODE: $000000DE VOL: 0
 ;PCODE: $000000DF VOL: 0
+; 0003 005F             wait_time--;
 ;PCODE: $000000E0 VOL: 0
-; 0003 005E     lock_reset_failures();
 ;PCODE: $000000E1 VOL: 0
-; 0003 005F }
+; 0003 0060             sprintf(buf, "Wait %2d sec   ", wait_time);
 ;PCODE: $000000E2 VOL: 0
 ;PCODE: $000000E3 VOL: 0
 ;PCODE: $000000E4 VOL: 0
@@ -357,358 +358,358 @@ _0x6000B:
 ;PCODE: $000000E6 VOL: 0
 ;PCODE: $000000E7 VOL: 0
 ;PCODE: $000000E8 VOL: 0
-
-	.DSEG
-_0x6001D:
-	.BYTE 0xF
-;
-;// ???? ??????
-;void admin_menu(void) {
-; 0003 0062 void admin_menu(void) {
-
-	.CSEG
 ;PCODE: $000000E9 VOL: 0
 ;PCODE: $000000EA VOL: 0
-; 0003 0063     char key;
-; 0003 0064     char buf[10];
-; 0003 0065 
-; 0003 0066     while(1) {
 ;PCODE: $000000EB VOL: 0
 ;PCODE: $000000EC VOL: 0
-;	key -> R17
-;	buf -> Y+1
 ;PCODE: $000000ED VOL: 0
-; 0003 0067         lcd_clear();
+; 0003 0061             lcd_gotoxy(0, 1);
 ;PCODE: $000000EE VOL: 0
-; 0003 0068         lcd_print("1:UsrPsw 2:AdmPs");
 ;PCODE: $000000EF VOL: 0
 ;PCODE: $000000F0 VOL: 0
 ;PCODE: $000000F1 VOL: 0
-; 0003 0069         lcd_gotoxy(0, 1);
+; 0003 0062             lcd_print(buf);
 ;PCODE: $000000F2 VOL: 0
 ;PCODE: $000000F3 VOL: 0
+; 0003 0063         }
+; 0003 0064     }
 ;PCODE: $000000F4 VOL: 0
 ;PCODE: $000000F5 VOL: 0
-; 0003 006A         lcd_print("3:Tries  4:Len");
 ;PCODE: $000000F6 VOL: 0
+; 0003 0065     lock_reset_failures();
 ;PCODE: $000000F7 VOL: 0
+; 0003 0066 }
 ;PCODE: $000000F8 VOL: 0
-; 0003 006B 
-; 0003 006C         key = ui_get_key();
 ;PCODE: $000000F9 VOL: 0
 ;PCODE: $000000FA VOL: 0
-; 0003 006D 
-; 0003 006E         if(key == '1') {
 ;PCODE: $000000FB VOL: 0
 ;PCODE: $000000FC VOL: 0
 ;PCODE: $000000FD VOL: 0
-; 0003 006F             lcd_clear(); lcd_print("New User Pass:");
 ;PCODE: $000000FE VOL: 0
+
+	.DSEG
+_0x6001F:
+	.BYTE 0xF
+;
+;// منوی مدیریت
+;void admin_menu(void) {
+; 0003 0069 void admin_menu(void) {
+
+	.CSEG
 ;PCODE: $000000FF VOL: 0
 ;PCODE: $00000100 VOL: 0
+; 0003 006A     char key;
+; 0003 006B     char buf[10];
+; 0003 006C 
+; 0003 006D     while(1) {
 ;PCODE: $00000101 VOL: 0
-; 0003 0070             if(get_input(buf, lock_get_pass_len(), 1)) {
 ;PCODE: $00000102 VOL: 0
+;	key -> R17
+;	buf -> Y+1
 ;PCODE: $00000103 VOL: 0
+; 0003 006E         lcd_clear();
 ;PCODE: $00000104 VOL: 0
+; 0003 006F         lcd_print("1:UsrPsw 2:AdmPs");
 ;PCODE: $00000105 VOL: 0
 ;PCODE: $00000106 VOL: 0
 ;PCODE: $00000107 VOL: 0
+; 0003 0070         lcd_gotoxy(0, 1);
 ;PCODE: $00000108 VOL: 0
 ;PCODE: $00000109 VOL: 0
 ;PCODE: $0000010A VOL: 0
 ;PCODE: $0000010B VOL: 0
-; 0003 0071                 lock_set_password(buf, ROLE_USER);
+; 0003 0071         lcd_print("3:Tries  4:Len");
 ;PCODE: $0000010C VOL: 0
 ;PCODE: $0000010D VOL: 0
 ;PCODE: $0000010E VOL: 0
+; 0003 0072 
+; 0003 0073         key = ui_get_key();
 ;PCODE: $0000010F VOL: 0
-; 0003 0072                 lcd_clear(); lcd_print("Saved!"); wait_ms(1000);
 ;PCODE: $00000110 VOL: 0
+; 0003 0074 
+; 0003 0075         if(key == '1') {
 ;PCODE: $00000111 VOL: 0
 ;PCODE: $00000112 VOL: 0
 ;PCODE: $00000113 VOL: 0
+; 0003 0076             lcd_clear(); lcd_print("New User Pass:");
 ;PCODE: $00000114 VOL: 0
 ;PCODE: $00000115 VOL: 0
-; 0003 0073             }
-; 0003 0074         }
 ;PCODE: $00000116 VOL: 0
-; 0003 0075         else if(key == '2') {
 ;PCODE: $00000117 VOL: 0
+; 0003 0077             if(get_input(buf, lock_get_pass_len(), 1)) {
 ;PCODE: $00000118 VOL: 0
 ;PCODE: $00000119 VOL: 0
 ;PCODE: $0000011A VOL: 0
 ;PCODE: $0000011B VOL: 0
-; 0003 0076             lcd_clear(); lcd_print("New Admin Pass:");
 ;PCODE: $0000011C VOL: 0
 ;PCODE: $0000011D VOL: 0
 ;PCODE: $0000011E VOL: 0
 ;PCODE: $0000011F VOL: 0
-; 0003 0077             if(get_input(buf, lock_get_pass_len(), 1)) {
 ;PCODE: $00000120 VOL: 0
 ;PCODE: $00000121 VOL: 0
+; 0003 0078                 lock_set_password(buf, ROLE_USER);
 ;PCODE: $00000122 VOL: 0
 ;PCODE: $00000123 VOL: 0
 ;PCODE: $00000124 VOL: 0
 ;PCODE: $00000125 VOL: 0
+; 0003 0079                 lcd_clear(); lcd_print("Saved!"); wait_ms(1000);
 ;PCODE: $00000126 VOL: 0
 ;PCODE: $00000127 VOL: 0
 ;PCODE: $00000128 VOL: 0
 ;PCODE: $00000129 VOL: 0
-; 0003 0078                 lock_set_password(buf, ROLE_ADMIN);
 ;PCODE: $0000012A VOL: 0
 ;PCODE: $0000012B VOL: 0
+; 0003 007A             }
+; 0003 007B         }
 ;PCODE: $0000012C VOL: 0
+; 0003 007C         else if(key == '2') {
 ;PCODE: $0000012D VOL: 0
-; 0003 0079                 lcd_clear(); lcd_print("Saved!"); wait_ms(1000);
 ;PCODE: $0000012E VOL: 0
 ;PCODE: $0000012F VOL: 0
 ;PCODE: $00000130 VOL: 0
 ;PCODE: $00000131 VOL: 0
+; 0003 007D             lcd_clear(); lcd_print("New Admin Pass:");
 ;PCODE: $00000132 VOL: 0
 ;PCODE: $00000133 VOL: 0
-; 0003 007A             }
-; 0003 007B         }
 ;PCODE: $00000134 VOL: 0
-; 0003 007C         else if(key == '3') {
 ;PCODE: $00000135 VOL: 0
+; 0003 007E             if(get_input(buf, lock_get_pass_len(), 1)) {
 ;PCODE: $00000136 VOL: 0
 ;PCODE: $00000137 VOL: 0
 ;PCODE: $00000138 VOL: 0
 ;PCODE: $00000139 VOL: 0
-; 0003 007D             lcd_clear(); lcd_print("Set Max Tries:");
 ;PCODE: $0000013A VOL: 0
 ;PCODE: $0000013B VOL: 0
 ;PCODE: $0000013C VOL: 0
 ;PCODE: $0000013D VOL: 0
-; 0003 007E             if(get_input(buf, 1, 0)) { // ??? 1 ??? ???? ???
 ;PCODE: $0000013E VOL: 0
 ;PCODE: $0000013F VOL: 0
+; 0003 007F                 lock_set_password(buf, ROLE_ADMIN);
 ;PCODE: $00000140 VOL: 0
 ;PCODE: $00000141 VOL: 0
 ;PCODE: $00000142 VOL: 0
 ;PCODE: $00000143 VOL: 0
+; 0003 0080                 lcd_clear(); lcd_print("Saved!"); wait_ms(1000);
 ;PCODE: $00000144 VOL: 0
 ;PCODE: $00000145 VOL: 0
 ;PCODE: $00000146 VOL: 0
-; 0003 007F                 lock_set_max_tries(buf[0] - '0');
 ;PCODE: $00000147 VOL: 0
 ;PCODE: $00000148 VOL: 0
 ;PCODE: $00000149 VOL: 0
-; 0003 0080                 lcd_clear(); lcd_print("Saved!"); wait_ms(1000);
+; 0003 0081             }
+; 0003 0082         }
 ;PCODE: $0000014A VOL: 0
+; 0003 0083         else if(key == '3') {
 ;PCODE: $0000014B VOL: 0
 ;PCODE: $0000014C VOL: 0
 ;PCODE: $0000014D VOL: 0
 ;PCODE: $0000014E VOL: 0
 ;PCODE: $0000014F VOL: 0
-; 0003 0081             }
-; 0003 0082         }
+; 0003 0084             lcd_clear(); lcd_print("Set Max Tries:");
 ;PCODE: $00000150 VOL: 0
-; 0003 0083         else if(key == '4') {
 ;PCODE: $00000151 VOL: 0
 ;PCODE: $00000152 VOL: 0
 ;PCODE: $00000153 VOL: 0
+; 0003 0085             if(get_input(buf, 1, 0)) {
 ;PCODE: $00000154 VOL: 0
 ;PCODE: $00000155 VOL: 0
-; 0003 0084             lcd_clear(); lcd_print("Set Length(4-8):");
 ;PCODE: $00000156 VOL: 0
 ;PCODE: $00000157 VOL: 0
 ;PCODE: $00000158 VOL: 0
 ;PCODE: $00000159 VOL: 0
-; 0003 0085             if(get_input(buf, 1, 0)) {
 ;PCODE: $0000015A VOL: 0
 ;PCODE: $0000015B VOL: 0
 ;PCODE: $0000015C VOL: 0
+; 0003 0086                 lock_set_max_tries(buf[0] - '0');
 ;PCODE: $0000015D VOL: 0
 ;PCODE: $0000015E VOL: 0
 ;PCODE: $0000015F VOL: 0
+; 0003 0087                 lcd_clear(); lcd_print("Saved!"); wait_ms(1000);
 ;PCODE: $00000160 VOL: 0
 ;PCODE: $00000161 VOL: 0
 ;PCODE: $00000162 VOL: 0
-; 0003 0086                 int new_len = buf[0] - '0';
-; 0003 0087                 if(new_len >= 4 && new_len <= 8) {
 ;PCODE: $00000163 VOL: 0
-;	buf -> Y+3
-;	new_len -> Y+0
 ;PCODE: $00000164 VOL: 0
 ;PCODE: $00000165 VOL: 0
+; 0003 0088             }
+; 0003 0089         }
 ;PCODE: $00000166 VOL: 0
+; 0003 008A         else if(key == '4') {
 ;PCODE: $00000167 VOL: 0
 ;PCODE: $00000168 VOL: 0
 ;PCODE: $00000169 VOL: 0
 ;PCODE: $0000016A VOL: 0
 ;PCODE: $0000016B VOL: 0
+; 0003 008B             lcd_clear(); lcd_print("Set Length(4-8):");
 ;PCODE: $0000016C VOL: 0
 ;PCODE: $0000016D VOL: 0
 ;PCODE: $0000016E VOL: 0
 ;PCODE: $0000016F VOL: 0
+; 0003 008C             if(get_input(buf, 1, 0)) {
 ;PCODE: $00000170 VOL: 0
 ;PCODE: $00000171 VOL: 0
-; 0003 0088                     lock_set_pass_len(new_len);
 ;PCODE: $00000172 VOL: 0
 ;PCODE: $00000173 VOL: 0
-; 0003 0089                     lcd_clear(); lcd_print("Saved! Plz Reset");
 ;PCODE: $00000174 VOL: 0
 ;PCODE: $00000175 VOL: 0
 ;PCODE: $00000176 VOL: 0
 ;PCODE: $00000177 VOL: 0
-; 0003 008A                     wait_ms(1000);
 ;PCODE: $00000178 VOL: 0
+; 0003 008D                 int new_len = buf[0] - '0';
+; 0003 008E                 if(new_len >= 4 && new_len <= 8) {
 ;PCODE: $00000179 VOL: 0
-; 0003 008B                 } else {
+;	buf -> Y+3
+;	new_len -> Y+0
 ;PCODE: $0000017A VOL: 0
 ;PCODE: $0000017B VOL: 0
-; 0003 008C                     lcd_clear(); lcd_print("Invalid Length!");
 ;PCODE: $0000017C VOL: 0
 ;PCODE: $0000017D VOL: 0
 ;PCODE: $0000017E VOL: 0
 ;PCODE: $0000017F VOL: 0
-; 0003 008D                     wait_ms(1000);
 ;PCODE: $00000180 VOL: 0
 ;PCODE: $00000181 VOL: 0
-; 0003 008E                 }
 ;PCODE: $00000182 VOL: 0
-; 0003 008F             }
 ;PCODE: $00000183 VOL: 0
-; 0003 0090         }
 ;PCODE: $00000184 VOL: 0
-; 0003 0091         else if(key == 'C' || key == 'D') {
 ;PCODE: $00000185 VOL: 0
 ;PCODE: $00000186 VOL: 0
 ;PCODE: $00000187 VOL: 0
+; 0003 008F                     lock_set_pass_len(new_len);
 ;PCODE: $00000188 VOL: 0
 ;PCODE: $00000189 VOL: 0
+; 0003 0090                     lcd_clear(); lcd_print("Saved! Plz Reset");
 ;PCODE: $0000018A VOL: 0
 ;PCODE: $0000018B VOL: 0
 ;PCODE: $0000018C VOL: 0
 ;PCODE: $0000018D VOL: 0
+; 0003 0091                     wait_ms(1000);
 ;PCODE: $0000018E VOL: 0
-; 0003 0092             break; // ???? ?? ???? ??????
 ;PCODE: $0000018F VOL: 0
-; 0003 0093         }
-; 0003 0094     }
+; 0003 0092                 } else {
 ;PCODE: $00000190 VOL: 0
 ;PCODE: $00000191 VOL: 0
+; 0003 0093                     lcd_clear(); lcd_print("Invalid Length!");
 ;PCODE: $00000192 VOL: 0
 ;PCODE: $00000193 VOL: 0
 ;PCODE: $00000194 VOL: 0
 ;PCODE: $00000195 VOL: 0
+; 0003 0094                     wait_ms(1000);
 ;PCODE: $00000196 VOL: 0
-; 0003 0095 }
 ;PCODE: $00000197 VOL: 0
+; 0003 0095                 }
 ;PCODE: $00000198 VOL: 0
+; 0003 0096             }
 ;PCODE: $00000199 VOL: 0
+; 0003 0097         }
 ;PCODE: $0000019A VOL: 0
+; 0003 0098         else if(key == '-' || key == '+') { // دکمه‌های خروج
 ;PCODE: $0000019B VOL: 0
-
-	.DSEG
-_0x60025:
-	.BYTE 0x95
-;
-;void main(void) {
-; 0003 0097 void main(void) {
-
-	.CSEG
 ;PCODE: $0000019C VOL: 0
-; 0003 0098     char key;
-; 0003 0099     char input_buffer[10];
-; 0003 009A 
-; 0003 009B     // ???????? ????? ?????
-; 0003 009C     timer_init();
 ;PCODE: $0000019D VOL: 0
-;	key -> R17
-;	input_buffer -> Y+0
 ;PCODE: $0000019E VOL: 0
-; 0003 009D     lcd_init();
 ;PCODE: $0000019F VOL: 0
-; 0003 009E     keypad_init();
 ;PCODE: $000001A0 VOL: 0
-; 0003 009F     lock_init();
 ;PCODE: $000001A1 VOL: 0
-; 0003 00A0 
-; 0003 00A1     lcd_clear();
 ;PCODE: $000001A2 VOL: 0
-; 0003 00A2     lcd_print("  Digital Lock  ");
 ;PCODE: $000001A3 VOL: 0
 ;PCODE: $000001A4 VOL: 0
+; 0003 0099             break;
 ;PCODE: $000001A5 VOL: 0
-; 0003 00A3     lcd_gotoxy(0, 1);
+; 0003 009A         }
+; 0003 009B     }
 ;PCODE: $000001A6 VOL: 0
 ;PCODE: $000001A7 VOL: 0
 ;PCODE: $000001A8 VOL: 0
 ;PCODE: $000001A9 VOL: 0
-; 0003 00A4     lcd_print(" Starting...    ");
 ;PCODE: $000001AA VOL: 0
 ;PCODE: $000001AB VOL: 0
 ;PCODE: $000001AC VOL: 0
-; 0003 00A5     wait_ms(1500);
+; 0003 009C }
 ;PCODE: $000001AD VOL: 0
 ;PCODE: $000001AE VOL: 0
-; 0003 00A6 
-; 0003 00A7     while (1) {
 ;PCODE: $000001AF VOL: 0
-; 0003 00A8         lock_update_task();
 ;PCODE: $000001B0 VOL: 0
-; 0003 00A9 
-; 0003 00AA         lcd_clear();
 ;PCODE: $000001B1 VOL: 0
-; 0003 00AB         lcd_print("A: User  B:Admin");
+
+	.DSEG
+_0x60027:
+	.BYTE 0x95
+;
+;void main(void) {
+; 0003 009E void main(void) {
+
+	.CSEG
 ;PCODE: $000001B2 VOL: 0
+; 0003 009F     char key;
+; 0003 00A0     char input_buffer[10];
+; 0003 00A1 
+; 0003 00A2     timer_init();
 ;PCODE: $000001B3 VOL: 0
+;	key -> R17
+;	input_buffer -> Y+0
 ;PCODE: $000001B4 VOL: 0
-; 0003 00AC         lcd_gotoxy(0, 1);
+; 0003 00A3     lcd_init();
 ;PCODE: $000001B5 VOL: 0
+; 0003 00A4     keypad_init();
 ;PCODE: $000001B6 VOL: 0
+; 0003 00A5     lock_init();
 ;PCODE: $000001B7 VOL: 0
+; 0003 00A6 
+; 0003 00A7     lcd_clear();
 ;PCODE: $000001B8 VOL: 0
-; 0003 00AD         lcd_print("Select Mode...");
+; 0003 00A8     lcd_print("  Digital Lock  ");
 ;PCODE: $000001B9 VOL: 0
 ;PCODE: $000001BA VOL: 0
 ;PCODE: $000001BB VOL: 0
-; 0003 00AE 
-; 0003 00AF         key = ui_get_key();
+; 0003 00A9     lcd_gotoxy(0, 1);
 ;PCODE: $000001BC VOL: 0
 ;PCODE: $000001BD VOL: 0
-; 0003 00B0 
-; 0003 00B1         if (key == 'A') { // ???? ?????
 ;PCODE: $000001BE VOL: 0
 ;PCODE: $000001BF VOL: 0
+; 0003 00AA     lcd_print(" Starting...    ");
 ;PCODE: $000001C0 VOL: 0
-; 0003 00B2             lcd_clear();
 ;PCODE: $000001C1 VOL: 0
-; 0003 00B3             lcd_print("User Password:");
 ;PCODE: $000001C2 VOL: 0
+; 0003 00AB     wait_ms(1500);
 ;PCODE: $000001C3 VOL: 0
 ;PCODE: $000001C4 VOL: 0
-; 0003 00B4             if (get_input(input_buffer, lock_get_pass_len(), 1)) {
+; 0003 00AC 
+; 0003 00AD     while (1) {
 ;PCODE: $000001C5 VOL: 0
+; 0003 00AE         lock_update_task();
 ;PCODE: $000001C6 VOL: 0
+; 0003 00AF 
+; 0003 00B0         lcd_clear();
 ;PCODE: $000001C7 VOL: 0
+; 0003 00B1         lcd_print("/: User  *:Admin"); // تغییر راهنما روی LCD
 ;PCODE: $000001C8 VOL: 0
 ;PCODE: $000001C9 VOL: 0
 ;PCODE: $000001CA VOL: 0
+; 0003 00B2         lcd_gotoxy(0, 1);
 ;PCODE: $000001CB VOL: 0
 ;PCODE: $000001CC VOL: 0
 ;PCODE: $000001CD VOL: 0
 ;PCODE: $000001CE VOL: 0
-; 0003 00B5                 if (lock_verify_password(input_buffer, ROLE_USER)) {
+; 0003 00B3         lcd_print("Select Mode...");
 ;PCODE: $000001CF VOL: 0
 ;PCODE: $000001D0 VOL: 0
 ;PCODE: $000001D1 VOL: 0
+; 0003 00B4 
+; 0003 00B5         key = ui_get_key();
 ;PCODE: $000001D2 VOL: 0
 ;PCODE: $000001D3 VOL: 0
+; 0003 00B6 
+; 0003 00B7         if (key == '/') { // تغییر دکمه حالت کاربر به /
 ;PCODE: $000001D4 VOL: 0
-; 0003 00B6                     lock_reset_failures();
 ;PCODE: $000001D5 VOL: 0
-; 0003 00B7                     lock_open_door();
 ;PCODE: $000001D6 VOL: 0
-; 0003 00B8                     lcd_clear(); lcd_print("Access Granted");
+; 0003 00B8             lcd_clear();
 ;PCODE: $000001D7 VOL: 0
+; 0003 00B9             lcd_print("User Password:");
 ;PCODE: $000001D8 VOL: 0
 ;PCODE: $000001D9 VOL: 0
 ;PCODE: $000001DA VOL: 0
-; 0003 00B9                     lcd_gotoxy(0, 1); lcd_print("Door Opened");
+; 0003 00BA             if (get_input(input_buffer, lock_get_pass_len(), 1)) {
 ;PCODE: $000001DB VOL: 0
 ;PCODE: $000001DC VOL: 0
 ;PCODE: $000001DD VOL: 0
@@ -716,120 +717,147 @@ _0x60025:
 ;PCODE: $000001DF VOL: 0
 ;PCODE: $000001E0 VOL: 0
 ;PCODE: $000001E1 VOL: 0
-; 0003 00BA                     wait_ms(2000);
 ;PCODE: $000001E2 VOL: 0
 ;PCODE: $000001E3 VOL: 0
-; 0003 00BB                 } else {
 ;PCODE: $000001E4 VOL: 0
+; 0003 00BB                 if (lock_verify_password(input_buffer, ROLE_USER)) {
 ;PCODE: $000001E5 VOL: 0
-; 0003 00BC                     lock_register_failure();
 ;PCODE: $000001E6 VOL: 0
-; 0003 00BD                     lcd_clear(); lcd_print("Wrong Password!");
 ;PCODE: $000001E7 VOL: 0
 ;PCODE: $000001E8 VOL: 0
 ;PCODE: $000001E9 VOL: 0
 ;PCODE: $000001EA VOL: 0
-; 0003 00BE                     wait_ms(1500);
+; 0003 00BC                     lock_reset_failures();
 ;PCODE: $000001EB VOL: 0
+; 0003 00BD                     lock_open_door();
 ;PCODE: $000001EC VOL: 0
-; 0003 00BF                     if(lock_get_failed_attempts() >= lock_get_max_tries()) {
+; 0003 00BE                     lcd_clear(); lcd_print("Access Granted");
 ;PCODE: $000001ED VOL: 0
 ;PCODE: $000001EE VOL: 0
 ;PCODE: $000001EF VOL: 0
 ;PCODE: $000001F0 VOL: 0
+; 0003 00BF                     lcd_gotoxy(0, 1); lcd_print("Door Opened");
 ;PCODE: $000001F1 VOL: 0
 ;PCODE: $000001F2 VOL: 0
-; 0003 00C0                         system_lockdown();
 ;PCODE: $000001F3 VOL: 0
-; 0003 00C1                     }
-; 0003 00C2                 }
 ;PCODE: $000001F4 VOL: 0
 ;PCODE: $000001F5 VOL: 0
-; 0003 00C3             }
-; 0003 00C4         }
 ;PCODE: $000001F6 VOL: 0
-; 0003 00C5         else if (key == 'B') { // ???? ????
 ;PCODE: $000001F7 VOL: 0
+; 0003 00C0                     wait_ms(2000);
 ;PCODE: $000001F8 VOL: 0
 ;PCODE: $000001F9 VOL: 0
+; 0003 00C1                 } else {
 ;PCODE: $000001FA VOL: 0
 ;PCODE: $000001FB VOL: 0
-; 0003 00C6             lcd_clear();
+; 0003 00C2                     lock_register_failure();
 ;PCODE: $000001FC VOL: 0
-; 0003 00C7             lcd_print("Admin Password:");
+; 0003 00C3                     lcd_clear(); lcd_print("Wrong Password!");
 ;PCODE: $000001FD VOL: 0
 ;PCODE: $000001FE VOL: 0
 ;PCODE: $000001FF VOL: 0
-; 0003 00C8             if (get_input(input_buffer, lock_get_pass_len(), 1)) {
 ;PCODE: $00000200 VOL: 0
+; 0003 00C4                     wait_ms(1500);
 ;PCODE: $00000201 VOL: 0
 ;PCODE: $00000202 VOL: 0
+; 0003 00C5                     if(lock_get_failed_attempts() >= lock_get_max_tries()) {
 ;PCODE: $00000203 VOL: 0
 ;PCODE: $00000204 VOL: 0
 ;PCODE: $00000205 VOL: 0
 ;PCODE: $00000206 VOL: 0
 ;PCODE: $00000207 VOL: 0
 ;PCODE: $00000208 VOL: 0
+; 0003 00C6                         system_lockdown();
 ;PCODE: $00000209 VOL: 0
-; 0003 00C9                 if (lock_verify_password(input_buffer, ROLE_ADMIN)) {
+; 0003 00C7                     }
+; 0003 00C8                 }
 ;PCODE: $0000020A VOL: 0
 ;PCODE: $0000020B VOL: 0
+; 0003 00C9             }
+; 0003 00CA         }
 ;PCODE: $0000020C VOL: 0
+; 0003 00CB         else if (key == '*') { // تغییر دکمه حالت مدیر به *
 ;PCODE: $0000020D VOL: 0
 ;PCODE: $0000020E VOL: 0
 ;PCODE: $0000020F VOL: 0
-; 0003 00CA                     lock_reset_failures();
 ;PCODE: $00000210 VOL: 0
-; 0003 00CB                     lcd_clear(); lcd_print("Admin Verified!");
 ;PCODE: $00000211 VOL: 0
+; 0003 00CC             lcd_clear();
 ;PCODE: $00000212 VOL: 0
+; 0003 00CD             lcd_print("Admin Password:");
 ;PCODE: $00000213 VOL: 0
 ;PCODE: $00000214 VOL: 0
-; 0003 00CC                     wait_ms(1000);
 ;PCODE: $00000215 VOL: 0
+; 0003 00CE             if (get_input(input_buffer, lock_get_pass_len(), 1)) {
 ;PCODE: $00000216 VOL: 0
-; 0003 00CD                     admin_menu(); // ???? ?? ???? ???????
 ;PCODE: $00000217 VOL: 0
-; 0003 00CE                 } else {
 ;PCODE: $00000218 VOL: 0
 ;PCODE: $00000219 VOL: 0
-; 0003 00CF                     lock_register_failure();
 ;PCODE: $0000021A VOL: 0
-; 0003 00D0                     lcd_clear(); lcd_print("Wrong Password!");
 ;PCODE: $0000021B VOL: 0
 ;PCODE: $0000021C VOL: 0
 ;PCODE: $0000021D VOL: 0
 ;PCODE: $0000021E VOL: 0
-; 0003 00D1                     wait_ms(1500);
 ;PCODE: $0000021F VOL: 0
+; 0003 00CF                 if (lock_verify_password(input_buffer, ROLE_ADMIN)) {
 ;PCODE: $00000220 VOL: 0
-; 0003 00D2                     if(lock_get_failed_attempts() >= lock_get_max_tries()) {
 ;PCODE: $00000221 VOL: 0
 ;PCODE: $00000222 VOL: 0
 ;PCODE: $00000223 VOL: 0
 ;PCODE: $00000224 VOL: 0
 ;PCODE: $00000225 VOL: 0
+; 0003 00D0                     lock_reset_failures();
 ;PCODE: $00000226 VOL: 0
-; 0003 00D3                         system_lockdown();
+; 0003 00D1                     lcd_clear(); lcd_print("Admin Verified!");
 ;PCODE: $00000227 VOL: 0
-; 0003 00D4                     }
-; 0003 00D5                 }
 ;PCODE: $00000228 VOL: 0
 ;PCODE: $00000229 VOL: 0
-; 0003 00D6             }
-; 0003 00D7         }
 ;PCODE: $0000022A VOL: 0
-; 0003 00D8     }
+; 0003 00D2                     wait_ms(1000);
 ;PCODE: $0000022B VOL: 0
 ;PCODE: $0000022C VOL: 0
+; 0003 00D3                     admin_menu();
 ;PCODE: $0000022D VOL: 0
+; 0003 00D4                 } else {
 ;PCODE: $0000022E VOL: 0
-; 0003 00D9 }
 ;PCODE: $0000022F VOL: 0
+; 0003 00D5                     lock_register_failure();
 ;PCODE: $00000230 VOL: 0
+; 0003 00D6                     lcd_clear(); lcd_print("Wrong Password!");
 ;PCODE: $00000231 VOL: 0
 ;PCODE: $00000232 VOL: 0
+;PCODE: $00000233 VOL: 0
+;PCODE: $00000234 VOL: 0
+; 0003 00D7                     wait_ms(1500);
+;PCODE: $00000235 VOL: 0
+;PCODE: $00000236 VOL: 0
+; 0003 00D8                     if(lock_get_failed_attempts() >= lock_get_max_tries()) {
+;PCODE: $00000237 VOL: 0
+;PCODE: $00000238 VOL: 0
+;PCODE: $00000239 VOL: 0
+;PCODE: $0000023A VOL: 0
+;PCODE: $0000023B VOL: 0
+;PCODE: $0000023C VOL: 0
+; 0003 00D9                         system_lockdown();
+;PCODE: $0000023D VOL: 0
+; 0003 00DA                     }
+; 0003 00DB                 }
+;PCODE: $0000023E VOL: 0
+;PCODE: $0000023F VOL: 0
+; 0003 00DC             }
+; 0003 00DD         }
+;PCODE: $00000240 VOL: 0
+; 0003 00DE     }
+;PCODE: $00000241 VOL: 0
+;PCODE: $00000242 VOL: 0
+;PCODE: $00000243 VOL: 0
+;PCODE: $00000244 VOL: 0
+; 0003 00DF }
+;PCODE: $00000245 VOL: 0
+;PCODE: $00000246 VOL: 0
+;PCODE: $00000247 VOL: 0
+;PCODE: $00000248 VOL: 0
 
 	.DSEG
-_0x60039:
+_0x6003B:
 	.BYTE 0xAC
