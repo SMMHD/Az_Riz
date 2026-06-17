@@ -31,7 +31,7 @@ PageIndex1=1
 OF2=..\hal_timer.c
 Active2=0
 EditorPanel2=0
-TimeStamp2=1556774262
+TimeStamp2=1557242828
 PageIndex2=2
 OF3=..\hal_lcd.c
 Active3=0
@@ -167,7 +167,7 @@ UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
 COFFileTimeStamp=1557233093
-Build=9
+Build=10
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -269,7 +269,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=9
+Build=10
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -611,7 +611,7 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks4]
-TimeStamp=1556774262
+TimeStamp=1557246217
 Row=0
 Column=0
 ScrollPosX=0
@@ -681,7 +681,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1557233223
+TimeStamp=1557246260
 [Bookmarks8]
 TimeStamp=1556772674
 Row=0
@@ -785,9 +785,9 @@ Blocks=0
 Blocks=0
 [FoldedCode8]
 Blocks=0
-[FoldedCode4]
-Blocks=0
 [FoldedCode5]
+Blocks=0
+[FoldedCode4]
 Blocks=0
 [FoldedCode10]
 Blocks=0
