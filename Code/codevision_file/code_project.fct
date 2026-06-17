@@ -1,6 +1,6 @@
-main DSTACK_USAGE:10 DSTACK_LEVEL:10 FILE:"..\..\Ersal\code\main.c" LINE:158
-system_lockdown DSTACK_USAGE:22 DSTACK_LEVEL:32 FILE:"..\..\Ersal\code\main.c" LINE:83
+main DSTACK_USAGE:10 DSTACK_LEVEL:10 FILE:"..\main.c" LINE:158
+system_lockdown DSTACK_USAGE:22 DSTACK_LEVEL:32 FILE:"..\main.c" LINE:83
 sprintf DSTACK_USAGE:14 DSTACK_LEVEL:46 FILE:"" LINE:1462
 _print DSTACK_USAGE:20 DSTACK_LEVEL:66 FILE:"" LINE:533
 strlen DSTACK_USAGE:2 DSTACK_LEVEL:68 FILE:"H:\CodeVison\lib\string.lib" LINE:1706
-timer0_comp_isr DSTACK_USAGE:7 DSTACK_LEVEL:75 FILE:"..\..\Ersal\code\hal_timer.c" LINE:7
+timer0_comp_isr DSTACK_USAGE:7 DSTACK_LEVEL:75 FILE:"..\hal_timer.c" LINE:7

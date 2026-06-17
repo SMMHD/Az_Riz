@@ -8,7 +8,7 @@ C=SnD Team
 D=6/10/2026 3:37:07 PM
 Files=5
 OpenedFiles=8
-AllowDisplayFunctionCallTree=0
+AllowDisplayFunctionCallTree=1
 CleanUp=2
 DebugOutputListFilesDirectory=Debug\List
 DebugOutputObjectFilesDirectory=Debug
@@ -58,16 +58,16 @@ Active7=0
 EditorPanel7=0
 TimeStamp7=1556773770
 PageIndex7=7
-F1=..\..\Ersal\code\app_lock.c
-F2=..\..\Ersal\code\hal_keypad.c
-F3=..\..\Ersal\code\hal_lcd.c
-F4=..\..\Ersal\code\hal_timer.c
-F5=..\..\Ersal\code\main.c
 OF8=..\..\Ersal\code\codevision_file\code_project.c
 Active8=1
 EditorPanel8=0
 TimeStamp8=1556774052
 PageIndex8=8
+F1=..\app_lock.c
+F2=..\hal_keypad.c
+F3=..\hal_lcd.c
+F4=..\hal_timer.c
+F5=..\main.c
 [CompilerDebug]
 Chip=ATmega32
 CPUClock=8000000
@@ -164,10 +164,10 @@ WarningStaticRamEepromStorageAllocConstStrLit=0
 DebugBootLoader=0
 WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
-RebuildAll=1
-LinkageInformationPresent=0
-COFFileTimeStamp=1557232520
-Build=8
+RebuildAll=0
+LinkageInformationPresent=1
+COFFileTimeStamp=1557233093
+Build=9
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -269,7 +269,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=8
+Build=9
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -513,7 +513,7 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 7
+L17=Build: 8
 L18=12828 line(s) compiled
 L19=No errors
 L20=No warnings
@@ -681,7 +681,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1557232711
+TimeStamp=1557233164
 [Bookmarks8]
 TimeStamp=1556772674
 Row=0
@@ -716,55 +716,6 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[HeadersList]
-Files=5
-F1=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Ersal\code\app_lock.c
-F2=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Ersal\code\hal_keypad.c
-F3=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Ersal\code\hal_lcd.c
-F4=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Ersal\code\hal_timer.c
-F5=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Ersal\code\main.c
-[Header1]
-Files=6
-F1=H:\CodeVison\inc\string.h
-F2=..\..\Ersal\code\config.h
-F3=H:\CodeVison\inc\mega32.h
-F4=H:\CodeVison\inc\mega32_bits.h
-F5=..\..\Ersal\code\hal_timer.h
-F6=..\..\Ersal\code\app_lock.h
-[Header2]
-Files=5
-F1=..\..\Ersal\code\config.h
-F2=H:\CodeVison\inc\mega32.h
-F3=H:\CodeVison\inc\mega32_bits.h
-F4=..\..\Ersal\code\hal_timer.h
-F5=..\..\Ersal\code\hal_keypad.h
-[Header3]
-Files=5
-F1=..\..\Ersal\code\config.h
-F2=H:\CodeVison\inc\mega32.h
-F3=H:\CodeVison\inc\mega32_bits.h
-F4=..\..\Ersal\code\hal_timer.h
-F5=..\..\Ersal\code\hal_lcd.h
-[Header4]
-Files=3
-F1=H:\CodeVison\inc\mega32.h
-F2=H:\CodeVison\inc\mega32_bits.h
-F3=..\..\Ersal\code\hal_timer.h
-[Header5]
-Files=11
-F1=H:\CodeVison\inc\mega32.h
-F2=H:\CodeVison\inc\mega32_bits.h
-F3=H:\CodeVison\inc\stdio.h
-F4=H:\CodeVison\inc\io.h
-F5=H:\CodeVison\inc\stdarg.h
-F6=H:\CodeVison\inc\string.h
-F7=..\..\Ersal\code\config.h
-F8=..\..\Ersal\code\hal_timer.h
-F9=..\..\Ersal\code\hal_lcd.h
-F10=..\..\Ersal\code\hal_keypad.h
-F11=..\..\Ersal\code\app_lock.h
-[FoldedCode9]
-Blocks=0
 [Bookmarks10]
 TimeStamp=1556774052
 Row=0
@@ -781,10 +732,53 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[FoldedCode10]
-Blocks=0
-[FoldedCode1]
-Blocks=0
+[HeadersList]
+Files=5
+F1=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Code\app_lock.c
+F2=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Code\hal_keypad.c
+F3=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Code\hal_lcd.c
+F4=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Code\hal_timer.c
+F5=F:\University\8th term\Microprocessor Labratory\Poject_AZ\Project\digital_lock\Code\main.c
+[Header1]
+Files=6
+F1=H:\CodeVison\inc\string.h
+F2=..\config.h
+F3=H:\CodeVison\inc\mega32.h
+F4=H:\CodeVison\inc\mega32_bits.h
+F5=..\hal_timer.h
+F6=..\app_lock.h
+[Header2]
+Files=5
+F1=..\config.h
+F2=H:\CodeVison\inc\mega32.h
+F3=H:\CodeVison\inc\mega32_bits.h
+F4=..\hal_timer.h
+F5=..\hal_keypad.h
+[Header3]
+Files=5
+F1=..\config.h
+F2=H:\CodeVison\inc\mega32.h
+F3=H:\CodeVison\inc\mega32_bits.h
+F4=..\hal_timer.h
+F5=..\hal_lcd.h
+[Header4]
+Files=3
+F1=H:\CodeVison\inc\mega32.h
+F2=H:\CodeVison\inc\mega32_bits.h
+F3=..\hal_timer.h
+[Header5]
+Files=11
+F1=H:\CodeVison\inc\mega32.h
+F2=H:\CodeVison\inc\mega32_bits.h
+F3=H:\CodeVison\inc\stdio.h
+F4=H:\CodeVison\inc\io.h
+F5=H:\CodeVison\inc\stdarg.h
+F6=H:\CodeVison\inc\string.h
+F7=..\config.h
+F8=..\hal_timer.h
+F9=..\hal_lcd.h
+F10=..\hal_keypad.h
+F11=..\app_lock.h
 [FoldedCode2]
 Blocks=0
 [FoldedCode3]
@@ -794,4 +788,10 @@ Blocks=0
 [FoldedCode4]
 Blocks=0
 [FoldedCode5]
+Blocks=0
+[FoldedCode10]
+Blocks=0
+[FoldedCode9]
+Blocks=0
+[FoldedCode1]
 Blocks=0

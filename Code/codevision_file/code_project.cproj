@@ -36,20 +36,20 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="..\..\Ersal\code\" />
-    <Compile Include="..\..\Ersal\code\app_lock.c">
+    <Folder Include="..\" />
+    <Compile Include="..\app_lock.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="..\..\Ersal\code\hal_keypad.c">
+    <Compile Include="..\hal_keypad.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="..\..\Ersal\code\hal_lcd.c">
+    <Compile Include="..\hal_lcd.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="..\..\Ersal\code\hal_timer.c">
+    <Compile Include="..\hal_timer.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="..\..\Ersal\code\main.c">
+    <Compile Include="..\main.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
